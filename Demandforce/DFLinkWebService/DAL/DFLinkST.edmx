@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DFLinkSTModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DFLinkSTModelStoreContainer">
+          <EntitySet Name="Task" EntityType="DFLinkSTModel.Store.Task" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaskLog" EntityType="DFLinkSTModel.Store.TaskLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaskParameters" EntityType="DFLinkSTModel.Store.TaskParameters" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaskSchedule" EntityType="DFLinkSTModel.Store.TaskSchedule" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="LicenseKey" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="LicenseKey" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Action" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ScheduleType" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="LicenseKey" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TaskParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="LicenseKey" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Key" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TaskSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="LicenseKey" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Key" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DFLinkSTModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DFLinkSTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tasks" EntityType="DFLinkSTModel.Task" />
+          <EntitySet Name="TaskLogs" EntityType="DFLinkSTModel.TaskLog" />
+          <EntitySet Name="TaskParameters" EntityType="DFLinkSTModel.TaskParameter" />
+          <EntitySet Name="TaskSchedules" EntityType="DFLinkSTModel.TaskSchedule" />
+        </EntityContainer>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="LicenseKey" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="LicenseKey" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ScheduleType" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+          <Property Name="LicenseKey" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaskParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="LicenseKey" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaskSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="LicenseKey" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Value" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DFLinkSTModelStoreContainer" CdmEntityContainer="DFLinkSTEntities">
+          <EntitySetMapping Name="Tasks"><EntityTypeMapping TypeName="DFLinkSTModel.Task"><MappingFragment StoreEntitySet="Task">
+            <ScalarProperty Name="LicenseKey" ColumnName="LicenseKey" />
+            <ScalarProperty Name="Action" ColumnName="Action" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+            <ScalarProperty Name="Id" ColumnName="Id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TaskLogs"><EntityTypeMapping TypeName="DFLinkSTModel.TaskLog"><MappingFragment StoreEntitySet="TaskLog">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="LicenseKey" ColumnName="LicenseKey" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TaskParameters"><EntityTypeMapping TypeName="DFLinkSTModel.TaskParameter"><MappingFragment StoreEntitySet="TaskParameters">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+            <ScalarProperty Name="LicenseKey" ColumnName="LicenseKey" />
+            <ScalarProperty Name="Key" ColumnName="Key" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TaskSchedules"><EntityTypeMapping TypeName="DFLinkSTModel.TaskSchedule"><MappingFragment StoreEntitySet="TaskSchedule">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+            <ScalarProperty Name="LicenseKey" ColumnName="LicenseKey" />
+            <ScalarProperty Name="Key" ColumnName="Key" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DFLinkST">
+        <EntityTypeShape EntityType="DFLinkSTModel.Task" Width="1.5" PointX="0.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFLinkSTModel.TaskLog" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFLinkSTModel.TaskParameter" Width="1.5" PointX="2.75" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFLinkSTModel.TaskSchedule" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
