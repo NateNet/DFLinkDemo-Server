@@ -1,42 +1,73 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Log.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Log.cs" company="Demandforce">
+//   TODO:
 // </copyright>
-// -----------------------------------------------------------------------
+// <summary>
+//   The business component to manage logs
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.BLL
 {
+    #region
+
     using System.Collections.Generic;
+
+    using Demandforce.DFLinkServer.DALFactory;
     using Demandforce.DFLinkServer.IDAL;
     using Demandforce.DFLinkServer.Model;
 
+    #endregion
+
     /// <summary>
-    /// The business component to manage logs
+    ///     The business component to manage logs
     /// </summary>
     public class Log
     {
-        /// <summary>
-        /// Get an instance of the Log DAL using DALFactory.
-        /// </summary>
-        private readonly ILog dal = DALFactory.DataAccess.CreateLogDAL();
+        #region Fields
 
         /// <summary>
-        /// upload log to message.
+        ///     Get an instance of the Log DAL using DALFactory.
         /// </summary>
-        /// <param name="log">an instance of LogItem</param>
-        /// <returns>true: success, false: failed.</returns>
-        public bool Upload(LogItem log, string licenseKey)
-        {
-            return dal.Upload(log, licenseKey);
-        }
+        private readonly ILog dal = DataAccess.CreateLogDAL();
+
+        #endregion
+
+        #region Public Methods and Operators
 
         /// <summary>
         /// Get the log list by a task id.
         /// </summary>
-        /// <param name="taskId">task id</param>
-        /// <returns>the array list of LogItem</returns>
+        /// <param name="taskId">
+        /// task id
+        /// </param>
+        /// <param name="licenseKey">
+        /// business license key
+        /// </param>
+        /// <returns>
+        /// the array list of LogItem
+        /// </returns>
         public IList<LogItem> GetLogs(int taskId, string licenseKey)
         {
-            return dal.GetLogs(taskId, licenseKey);
+            return this.dal.GetLogs(taskId, licenseKey);
         }
+
+        /// <summary>
+        /// upload log to message.
+        /// </summary>
+        /// <param name="log">
+        /// an instance of LogItem
+        /// </param>
+        /// <param name="licenseKey">
+        /// business license key 
+        /// </param>
+        /// <returns>
+        /// true: succeeded, false: failed.
+        /// </returns>
+        public bool Upload(LogItem log, string licenseKey)
+        {
+            return this.dal.Upload(log, licenseKey);
+        }
+
+        #endregion
     }
 }

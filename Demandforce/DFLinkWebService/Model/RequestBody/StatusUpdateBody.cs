@@ -1,36 +1,48 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="StatusUpdateBody.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StatusUpdateBody.cs" company="Demandforce">
+//   TODO:
 // </copyright>
-// -----------------------------------------------------------------------
-
+// <summary>
+//   request body of url: "task/updatestatus"
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.Model.RequestBody
 {
     /// <summary>
-    /// request body of uri: log/status/update
+    ///     request body of url: "task/updatestatus"
     /// </summary>
     public class StatusUpdateBody
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public BusinessCredentials BusinessCredentials { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public int TaskId { get; set; }
+        #region Constructors and Destructors
 
         /// <summary>
-        /// 
+        ///     Initializes a new instance of the <see cref="StatusUpdateBody" /> class.
         /// </summary>
-        public int Status { get; set; }
-
         public StatusUpdateBody()
         {
             this.TaskId = -1;
             this.Status = -1;
-
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the business credentials.
+        /// </summary>
+        public BusinessCredentials BusinessCredentials { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the status.
+        /// </summary>
+        public int Status { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the task id.
+        /// </summary>
+        public int TaskId { get; set; }
+
+        #endregion
     }
 }

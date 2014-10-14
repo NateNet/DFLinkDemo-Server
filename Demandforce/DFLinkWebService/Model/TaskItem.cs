@@ -1,64 +1,71 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TaskItem.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TaskItem.cs" company="Demandforce">
+//   TODO:
 // </copyright>
-// -----------------------------------------------------------------------
-
+// <summary>
+//   the model of task
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.Model
 {
-    using System;
-    using System.Runtime.Serialization;
-    using System.Xml.Serialization;
+    #region
+
     using System.Collections.Generic;
 
+    #endregion
+
     /// <summary>
-    /// the model of task
+    ///     the model of task
     /// </summary>
     public class TaskItem
     {
+        #region Public Properties
+
         /// <summary>
-        /// 
-        /// </summary>
-        public int Id { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string BusinessLicense { get; set; }
-        
-        /// <summary>
-        /// 
+        ///     Gets or sets the action.
         /// </summary>
         public string Action { get; set; }
-        
+
         /// <summary>
-        /// 
+        ///     Gets or sets the business license.
         /// </summary>
-        public string Name { get; set; }
-        
+        public string BusinessLicense { get; set; }
+
         /// <summary>
-        /// 
+        ///     Gets or sets the description.
         /// </summary>
         public string Description { get; set; }
-        
+
         /// <summary>
-        /// 
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the parameters of this task.
+        /// </summary>
+        public Dictionary<string, string> Parameters { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the schedule of this task.
+        /// </summary>
+        public Dictionary<string, string> Schedule { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the schedule type.
+        /// </summary>
+        public int ScheduleType { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the status.
         /// </summary>
         public int Status { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public int ScheduleType { get; set; }
-        
-        /// <summary>
-        /// the schedule of this task.
-        /// </summary>
-        public Dictionary<string, string> Schedule { get; set; }
-        
-        /// <summary>
-        /// the parameters of this task.
-        /// </summary>
-        public Dictionary<string, string> Parameters { get; set; }
+        #endregion
     }
 }

@@ -1,36 +1,46 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LogItem.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LogItem.cs" company="Demandforce">
+//   TODO:
 // </copyright>
-// -----------------------------------------------------------------------
-
+// <summary>
+//   the model of log item.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.Model
 {
+    #region
+
     using System;
 
+    #endregion
+
     /// <summary>
-    /// the model of log item.
+    ///     the model of log item.
     /// </summary>
     public class LogItem
     {
+        #region Public Properties
+
         /// <summary>
-        /// 
-        /// </summary>
-        public int Id { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public int TaskId { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Message { get; set; }
-        
-        /// <summary>
-        /// created date time.
+        ///     Gets or sets created date time.
         /// </summary>
         public DateTime CreateDate { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the message.
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the task id.
+        /// </summary>
+        public int TaskId { get; set; }
+
+        #endregion
     }
 }
