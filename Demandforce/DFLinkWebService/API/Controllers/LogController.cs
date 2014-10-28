@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LogController.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   The log controller.

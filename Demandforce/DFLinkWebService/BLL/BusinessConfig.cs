@@ -1,39 +1,38 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Log.cs" company="Demandforce">
+// <copyright file="BusinessConfig.cs" company="Demandforce">
 //   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
-//   The business component to manage logs
+//   TODO: Update summary.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.BLL
 {
     #region
 
-    using System.Collections.Generic;
+    using System;
 
     using Demandforce.DFLinkServer.DALFactory;
     using Demandforce.DFLinkServer.IDAL;
-    using Demandforce.DFLinkServer.Model;
 
     #endregion
 
     /// <summary>
-    ///     The business component to manage logs
+    ///     TODO: Update summary.
     /// </summary>
-    public class Log
+    public class BusinessConfig
     {
         #region Fields
 
         /// <summary>
-        ///     Get an instance of the Log DAL using DALFactory.
+        /// The config dal.
         /// </summary>
-        private ILog dal = DataAccess.CreateLogDAL();
+        private IBusinessConfig dal = DataAccess.CreateBusinessConfigDAL();
 
         /// <summary>
         /// Gets or sets the dal.
         /// </summary>
-        public ILog Dal 
+        public IBusinessConfig Dal
         {
             get
             {
@@ -51,37 +50,24 @@ namespace Demandforce.DFLinkServer.BLL
         #region Public Methods and Operators
 
         /// <summary>
-        /// Get the log list by a task id.
+        /// Save the business config content.
         /// </summary>
         /// <param name="taskId">
-        /// task id
+        /// task id.
         /// </param>
         /// <param name="licenseKey">
-        /// business license key
+        /// Business license key.
+        /// </param>
+        /// <param name="configContent">
+        /// The content of business config file.
         /// </param>
         /// <returns>
-        /// the array list of LogItem
+        /// The <see cref="string"/>.
         /// </returns>
-        public IList<LogItem> GetLogs(int taskId, string licenseKey)
+        public bool Save(int taskId, string licenseKey, string configContent)
         {
-            return this.dal.GetLogs(taskId, licenseKey);
-        }
-
-        /// <summary>
-        /// upload log to message.
-        /// </summary>
-        /// <param name="log">
-        /// an instance of LogItem
-        /// </param>
-        /// <param name="licenseKey">
-        /// business license key 
-        /// </param>
-        /// <returns>
-        /// true: succeeded, false: failed.
-        /// </returns>
-        public bool Upload(LogItem log, string licenseKey)
-        {
-            return this.dal.Upload(log, licenseKey);
+            this.dal.Insert(taskId, licenseKey, configContent, DateTime.Now);
+            return true;
         }
 
         #endregion

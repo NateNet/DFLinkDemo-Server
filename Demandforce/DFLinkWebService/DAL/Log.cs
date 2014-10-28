@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Log.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   a DAL class implement ILog
@@ -83,7 +83,7 @@ namespace Demandforce.DFLinkServer.DAL
                                   LicenseKey = licenseKey
                               };
 
-            using (DFLinkSTEntities dfEnt = new DFLinkSTEntities())
+            using (var dfEnt = new DFLinkSTEntities())
             {
                 dfEnt.TaskLogs.AddObject(taskLog);
                 dfEnt.SaveChanges();

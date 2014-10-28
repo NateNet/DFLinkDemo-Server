@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DataAccess.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   This class is implemented following the Abstract Factory pattern to create the DAL implementation
@@ -40,6 +40,28 @@ namespace Demandforce.DFLinkServer.DALFactory
             return new Task();
 
             // return (IDAL.ITask)Assembly.Load("DAL").CreateInstance("Task");
+        }
+
+        /// <summary>
+        /// The create business config dal.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IBusinessConfig"/>.
+        /// </returns>
+        public static IBusinessConfig CreateBusinessConfigDAL()
+        {
+            return new DAL.BusinessConfig();
+        }
+
+        /// <summary>
+        /// The create product version dal.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IProductVersion"/>.
+        /// </returns>
+        public static IProductVersion CreateProductVersionDAL()
+        {
+            return new DAL.ProductVersion();
         }
 
         #endregion

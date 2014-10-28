@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TaskController.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   The task controller.
@@ -66,21 +66,24 @@ namespace Demandforce.DFLinkServer.API.Controllers
         /// 1: succeeded, 0: failed 
         /// </returns>
         [HttpPost]
-        public string UpdateStatus([FromBody] StatusUpdateBody requestBody)
+        public string ExecuteResult([FromBody] ExecuteResultBody requestBody)
         {
             // TODO:
             try
             {
                 var task = new Task();
-                if (task.UpdateTaskStatus(
+                if (task.SaveExecuteResult(
                     requestBody.TaskId, 
                     requestBody.Status, 
+                    requestBody.Message,
                     requestBody.BusinessCredentials.LicenseKey))
                 {
                     return "1";
                 }
-
-                return "0";
+                else
+                {
+                    return "0";
+                }
             }
             catch (Exception ex)
             {

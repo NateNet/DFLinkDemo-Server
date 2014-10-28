@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Task.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   a DAL class implement ITask
@@ -117,8 +117,7 @@ namespace Demandforce.DFLinkServer.DAL
                                            BusinessLicense = t.LicenseKey, 
                                            Name = t.Name, 
                                            Action = t.Action, 
-                                           Description = t.Description, 
-                                           ScheduleType = t.ScheduleType
+                                           Description = t.Description
                                        };
                         tasks.Add(task);
                     }
@@ -139,18 +138,22 @@ namespace Demandforce.DFLinkServer.DAL
         /// <param name="newStatus">
         /// new status 
         /// </param>
+        /// <param name="message">
+        /// The returned message when execute a task.
+        /// </param>
         /// <param name="licenseKey">
         /// business license key 
         /// </param>
         /// <returns>
         /// true: succeeded, false: failed.
         /// </returns>
-        public bool UpdateTaskStatus(int taskId, int newStatus, string licenseKey)
+        public bool SaveExecuteResult(int taskId, int newStatus, string message, string licenseKey)
         {
-            DFLinkSTEntities dfEnt = new DFLinkSTEntities();
-            var task = new Data.Task { Id = taskId, LicenseKey = licenseKey, Status = newStatus };
+            var dfEnt = new DFLinkSTEntities();
+            var task = new Data.Task { Id = taskId, LicenseKey = licenseKey, Status = newStatus, ReturnedMessage = message };
             dfEnt.Tasks.Attach(task);
             dfEnt.ObjectStateManager.GetObjectStateEntry(task).SetModifiedProperty("Status");
+            dfEnt.ObjectStateManager.GetObjectStateEntry(task).SetModifiedProperty("ReturnedMessage");
 
             return dfEnt.SaveChanges() > 0;
         }

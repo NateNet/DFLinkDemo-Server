@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatusUpdateBody.cs" company="Demandforce">
-//   TODO:
+// <copyright file="ExecuteResultBody.cs" company="Demandforce">
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
-//   request body of url: "task/updatestatus"
+//   request body of url: "task/executeresult"
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.Model.RequestBody
 {
     /// <summary>
-    ///     request body of url: "task/updatestatus"
+    ///     request body of url: "task/executeresult"
     /// </summary>
-    public class StatusUpdateBody
+    public class ExecuteResultBody
     {
         #region Constructors and Destructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="StatusUpdateBody" /> class.
+        ///     Initializes a new instance of the <see cref="ExecuteResultBody" /> class.
         /// </summary>
-        public StatusUpdateBody()
+        public ExecuteResultBody()
         {
             this.TaskId = -1;
             this.Status = -1;
@@ -32,6 +32,11 @@ namespace Demandforce.DFLinkServer.Model.RequestBody
         ///     Gets or sets the business credentials.
         /// </summary>
         public BusinessCredentials BusinessCredentials { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>
+        public string Message { get; set; }
 
         /// <summary>
         ///     Gets or sets the status.

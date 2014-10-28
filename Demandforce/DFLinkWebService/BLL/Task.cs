@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Task.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   The business component to manage tasks
@@ -29,7 +29,23 @@ namespace Demandforce.DFLinkServer.BLL
         /// <summary>
         ///     Get an instance of the Task DAL using DALFactory.
         /// </summary>
-        private readonly ITask taskDAL = DataAccess.CreateTaskDAL();
+        private ITask taskDal = DataAccess.CreateTaskDAL();
+
+        /// <summary>
+        /// Gets or sets the task dal.
+        /// </summary>
+        public ITask TaskDal
+        {
+            get
+            {
+                return this.taskDal;
+            }
+
+            set
+            {
+                this.taskDal = value;
+            }
+        }
 
         #endregion
 
@@ -46,16 +62,15 @@ namespace Demandforce.DFLinkServer.BLL
         /// </returns>
         public IList<TaskItem> GetTasks(string licenseKey)
         {
-            var tasks = this.taskDAL.GetTasks(licenseKey);
+            var tasks = this.taskDal.GetTasks(licenseKey);
             if (tasks != null)
             {
                 foreach (var t in tasks)
                 {
-                    t.Parameters = this.taskDAL.GetTaskParameters(t.Id, licenseKey);
-                    t.Schedule = this.taskDAL.GetTaskSchedule(t.Id, licenseKey);
+                    t.Parameters = this.taskDal.GetTaskParameters(t.Id, licenseKey);
+                    t.Schedule = this.taskDal.GetTaskSchedule(t.Id, licenseKey);
                 }
             }
-
             return tasks;
         }
 
@@ -133,15 +148,18 @@ namespace Demandforce.DFLinkServer.BLL
         /// <param name="newStatus">
         /// new status
         /// </param>
+        /// <param name="message">
+        /// The returned message after execute a task.
+        /// </param>
         /// <param name="licenseKey">
         /// business license key
         /// </param>
         /// <returns>
         /// true: succeeded, false: failed.
         /// </returns>
-        public bool UpdateTaskStatus(int taskId, int newStatus, string licenseKey)
+        public bool SaveExecuteResult(int taskId, int newStatus, string message, string licenseKey)
         {
-            return this.taskDAL.UpdateTaskStatus(taskId, newStatus, licenseKey);
+            return this.taskDal.SaveExecuteResult(taskId, newStatus, message, licenseKey);
         }
 
         #endregion

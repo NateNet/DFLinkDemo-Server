@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogItem.cs" company="Demandforce">
+// <copyright file="ProductVersionItem.cs" company="Demandforce">
 //   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
-//   the model of log item.
+//    DO NOT USE
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.Model
@@ -15,31 +15,36 @@ namespace Demandforce.DFLinkServer.Model
     #endregion
 
     /// <summary>
-    ///     the model of log item.
+    ///     TODO: Update summary.
     /// </summary>
-    public class LogItem
+    public class ProductVersionItem
     {
         #region Public Properties
 
         /// <summary>
-        ///     Gets or sets created date time.
+        /// Gets or sets the create date.
         /// </summary>
         public DateTime CreateDate { get; set; }
 
         /// <summary>
-        ///     Gets or sets the id.
+        /// Gets or sets the file name.
         /// </summary>
-        public int Id { get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
-        ///     Gets or sets the message.
+        /// Gets or sets the license key.
         /// </summary>
-        public string Message { get; set; }
+        public string LicenseKey { get; set; }
 
         /// <summary>
-        ///     Gets or sets the task id.
+        /// Gets or sets the task id.
         /// </summary>
         public int TaskId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        public string Version { get; set; }
 
         #endregion
     }

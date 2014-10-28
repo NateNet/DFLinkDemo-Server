@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TaskTest.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   This is a test class for TaskTest and is intended
@@ -17,6 +17,8 @@ namespace BLL.Tests
     using Demandforce.DFLinkServer.Model;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Moq;
 
     #endregion
 
@@ -66,12 +68,24 @@ namespace BLL.Tests
         [TestMethod]
         public void GetTasksTest()
         {
-            Task target = new Task(); // TODO: Initialize to an appropriate value
-            string licenseKey = "xxxxx-xxxxxx"; // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            IList<TaskItem> actual;
-            actual = target.GetTasks(licenseKey);
-            Assert.AreNotEqual(expected, actual.Count);
+            var name = "Update";
+            var id = 1;
+            var license = "license";
+
+            var item = new TaskItem { Id = id, Name = name, BusinessLicense = license };
+            IList<TaskItem> tasks = new List<TaskItem>();
+            tasks.Add(item);
+
+            var mock = new Mock<Demandforce.DFLinkServer.IDAL.ITask>();
+            mock.Setup(p => p.GetTasks(license)).Returns(tasks);
+
+            var target = new Task { TaskDal = mock.Object }; 
+
+            var actual = target.GetTasks("license");
+
+            Assert.AreEqual(actual[0].Id, id);
+            Assert.AreEqual(actual[0].Name, name);
+            Assert.AreEqual(actual[0].BusinessLicense, license);
 
             // Assert.Inconclusive("Verify the correctness of this test method.");
         }
@@ -82,7 +96,7 @@ namespace BLL.Tests
         [TestMethod]
         public void TaskConstructorTest()
         {
-            Task target = new Task();
+            var target = new Task();
             Assert.IsNotNull(target);
 
             // Assert.Inconclusive("TODO: Implement code to verify target");
@@ -94,29 +108,30 @@ namespace BLL.Tests
         [TestMethod]
         public void ToXmlTest()
         {
-            Task target = new Task(); // TODO: Initialize to an appropriate value
-            IList<TaskItem> tasks = null; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToXml(tasks);
+            var target = new Task(); 
+            IList<TaskItem> tasks = null; 
+            var expected = "<Tasks></Tasks>";
+
+            var actual = target.ToXml(tasks);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+
+            // Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///     A test for UpdateTaskStatus
+        ///     A test for ExecuteResult
         /// </summary>
         [TestMethod]
-        public void UpdateTaskStatusTest()
+        public void SaveExecuteResultTest()
         {
-            Task target = new Task(); // TODO: Initialize to an appropriate value
-            int taskId = 0; // TODO: Initialize to an appropriate value
-            int newStatus = 9; // TODO: Initialize to an appropriate value
-            string licenseKey = "xxxxx-xxxxxx"; // TODO: Initialize to an appropriate value
-            bool expected = true; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.UpdateTaskStatus(taskId, newStatus, licenseKey);
-            Assert.AreEqual(expected, actual);
+            var mock = new Mock<Demandforce.DFLinkServer.IDAL.ITask>();
+            mock.Setup(p => p.SaveExecuteResult(0, 9, "message", "license")).Returns(true);
+
+            var target = new Task { TaskDal = mock.Object };
+
+            bool actual = target.SaveExecuteResult(0, 9, "message", "license");
+            
+            Assert.AreEqual(true, actual);
 
             // Assert.Inconclusive("Verify the correctness of this test method.");
         }

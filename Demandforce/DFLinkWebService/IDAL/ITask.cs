@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ITask.cs" company="Demandforce">
-//   TODO:
+//   Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
 //   The interface to the Task DAL.
@@ -71,13 +71,14 @@ namespace Demandforce.DFLinkServer.IDAL
         /// <param name="newStatus">
         /// new status
         /// </param>
+        /// <param name="message">returned message of a task</param>
         /// <param name="licenseKey">
         /// business license key
         /// </param>
         /// <returns>
         /// true: succeeded, false: failed
         /// </returns>
-        bool UpdateTaskStatus(int taskId, int newStatus, string licenseKey);
+        bool SaveExecuteResult(int taskId, int newStatus, string message, string licenseKey);
 
         #endregion
     }

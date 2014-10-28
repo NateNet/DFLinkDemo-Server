@@ -1,17 +1,17 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogUploadBody.cs" company="Demandforce">
-//   Copyright (c) Demandforce. All rights reserved.
+// <copyright file="UploadConfigBody.cs" company="Demandforce">
+//      Copyright (c) Demandforce. All rights reserved.
 // </copyright>
 // <summary>
-//   request body of uri: log/upload
+//   request body of uri: config/upload
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Demandforce.DFLinkServer.Model.RequestBody
 {
     /// <summary>
-    ///     request body of uri: log/upload
+    ///     request body of uri: config/upload
     /// </summary>
-    public class LogUploadBody
+    public class UploadConfigBody
     {
         #region Public Properties
 
@@ -21,12 +21,17 @@ namespace Demandforce.DFLinkServer.Model.RequestBody
         public BusinessCredentials BusinessCredentials { get; set; }
 
         /// <summary>
-        ///     Gets or sets the message.
+        ///     Gets or sets the config content.
         /// </summary>
-        public string Message { get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
-        ///     Gets or sets the task id.
+        /// Gets or sets the file content.
+        /// </summary>
+        public string FileContent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the task id.
         /// </summary>
         public int TaskId { get; set; }
 

@@ -68,22 +68,6 @@ namespace Demandforce.DFLinkServer.DAL.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Task> Tasks
-        {
-            get
-            {
-                if ((_Tasks == null))
-                {
-                    _Tasks = base.CreateObjectSet<Task>("Tasks");
-                }
-                return _Tasks;
-            }
-        }
-        private ObjectSet<Task> _Tasks;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<TaskLog> TaskLogs
         {
             get
@@ -128,17 +112,57 @@ namespace Demandforce.DFLinkServer.DAL.Data
             }
         }
         private ObjectSet<TaskSchedule> _TaskSchedules;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BusinessConfig> BusinessConfigs
+        {
+            get
+            {
+                if ((_BusinessConfigs == null))
+                {
+                    _BusinessConfigs = base.CreateObjectSet<BusinessConfig>("BusinessConfigs");
+                }
+                return _BusinessConfigs;
+            }
+        }
+        private ObjectSet<BusinessConfig> _BusinessConfigs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ProductVersion> ProductVersions
+        {
+            get
+            {
+                if ((_ProductVersions == null))
+                {
+                    _ProductVersions = base.CreateObjectSet<ProductVersion>("ProductVersions");
+                }
+                return _ProductVersions;
+            }
+        }
+        private ObjectSet<ProductVersion> _ProductVersions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Task> Tasks
+        {
+            get
+            {
+                if ((_Tasks == null))
+                {
+                    _Tasks = base.CreateObjectSet<Task>("Tasks");
+                }
+                return _Tasks;
+            }
+        }
+        private ObjectSet<Task> _Tasks;
 
         #endregion
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Tasks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTasks(Task task)
-        {
-            base.AddObject("Tasks", task);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the TaskLogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -163,6 +187,30 @@ namespace Demandforce.DFLinkServer.DAL.Data
         {
             base.AddObject("TaskSchedules", taskSchedule);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BusinessConfigs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBusinessConfigs(BusinessConfig businessConfig)
+        {
+            base.AddObject("BusinessConfigs", businessConfig);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ProductVersions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProductVersions(ProductVersion productVersion)
+        {
+            base.AddObject("ProductVersions", productVersion);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Tasks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTasks(Task task)
+        {
+            base.AddObject("Tasks", task);
+        }
 
         #endregion
     }
@@ -171,6 +219,344 @@ namespace Demandforce.DFLinkServer.DAL.Data
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DFLinkSTModel", Name="BusinessConfig")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class BusinessConfig : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new BusinessConfig object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="taskId">Initial value of the TaskId property.</param>
+        /// <param name="licenseKey">Initial value of the LicenseKey property.</param>
+        /// <param name="createDate">Initial value of the CreateDate property.</param>
+        public static BusinessConfig CreateBusinessConfig(global::System.Int32 id, global::System.Int32 taskId, global::System.String licenseKey, global::System.DateTime createDate)
+        {
+            BusinessConfig businessConfig = new BusinessConfig();
+            businessConfig.Id = id;
+            businessConfig.TaskId = taskId;
+            businessConfig.LicenseKey = licenseKey;
+            businessConfig.CreateDate = createDate;
+            return businessConfig;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TaskId
+        {
+            get
+            {
+                return _TaskId;
+            }
+            set
+            {
+                OnTaskIdChanging(value);
+                ReportPropertyChanging("TaskId");
+                _TaskId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TaskId");
+                OnTaskIdChanged();
+            }
+        }
+        private global::System.Int32 _TaskId;
+        partial void OnTaskIdChanging(global::System.Int32 value);
+        partial void OnTaskIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LicenseKey
+        {
+            get
+            {
+                return _LicenseKey;
+            }
+            set
+            {
+                OnLicenseKeyChanging(value);
+                ReportPropertyChanging("LicenseKey");
+                _LicenseKey = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LicenseKey");
+                OnLicenseKeyChanged();
+            }
+        }
+        private global::System.String _LicenseKey;
+        partial void OnLicenseKeyChanging(global::System.String value);
+        partial void OnLicenseKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ConfigContent
+        {
+            get
+            {
+                return _ConfigContent;
+            }
+            set
+            {
+                OnConfigContentChanging(value);
+                ReportPropertyChanging("ConfigContent");
+                _ConfigContent = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConfigContent");
+                OnConfigContentChanged();
+            }
+        }
+        private global::System.String _ConfigContent;
+        partial void OnConfigContentChanging(global::System.String value);
+        partial void OnConfigContentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return _CreateDate;
+            }
+            set
+            {
+                OnCreateDateChanging(value);
+                ReportPropertyChanging("CreateDate");
+                _CreateDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreateDate");
+                OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DFLinkSTModel", Name="ProductVersion")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ProductVersion : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ProductVersion object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="taskId">Initial value of the TaskId property.</param>
+        /// <param name="licenseKey">Initial value of the LicenseKey property.</param>
+        /// <param name="fileName">Initial value of the FileName property.</param>
+        public static ProductVersion CreateProductVersion(global::System.Int32 id, global::System.Int32 taskId, global::System.String licenseKey, global::System.String fileName)
+        {
+            ProductVersion productVersion = new ProductVersion();
+            productVersion.Id = id;
+            productVersion.TaskId = taskId;
+            productVersion.LicenseKey = licenseKey;
+            productVersion.FileName = fileName;
+            return productVersion;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TaskId
+        {
+            get
+            {
+                return _TaskId;
+            }
+            set
+            {
+                OnTaskIdChanging(value);
+                ReportPropertyChanging("TaskId");
+                _TaskId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TaskId");
+                OnTaskIdChanged();
+            }
+        }
+        private global::System.Int32 _TaskId;
+        partial void OnTaskIdChanging(global::System.Int32 value);
+        partial void OnTaskIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LicenseKey
+        {
+            get
+            {
+                return _LicenseKey;
+            }
+            set
+            {
+                OnLicenseKeyChanging(value);
+                ReportPropertyChanging("LicenseKey");
+                _LicenseKey = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LicenseKey");
+                OnLicenseKeyChanged();
+            }
+        }
+        private global::System.String _LicenseKey;
+        partial void OnLicenseKeyChanging(global::System.String value);
+        partial void OnLicenseKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FileName
+        {
+            get
+            {
+                return _FileName;
+            }
+            set
+            {
+                OnFileNameChanging(value);
+                ReportPropertyChanging("FileName");
+                _FileName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FileName");
+                OnFileNameChanged();
+            }
+        }
+        private global::System.String _FileName;
+        partial void OnFileNameChanging(global::System.String value);
+        partial void OnFileNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Version
+        {
+            get
+            {
+                return _Version;
+            }
+            set
+            {
+                OnVersionChanging(value);
+                ReportPropertyChanging("Version");
+                _Version = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Version");
+                OnVersionChanged();
+            }
+        }
+        private global::System.String _Version;
+        partial void OnVersionChanging(global::System.String value);
+        partial void OnVersionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -189,16 +575,14 @@ namespace Demandforce.DFLinkServer.DAL.Data
         /// <param name="action">Initial value of the Action property.</param>
         /// <param name="status">Initial value of the Status property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="scheduleType">Initial value of the ScheduleType property.</param>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Task CreateTask(global::System.String licenseKey, global::System.String action, global::System.Int32 status, global::System.String name, global::System.Int32 scheduleType, global::System.Int32 id)
+        public static Task CreateTask(global::System.String licenseKey, global::System.String action, global::System.Int32 status, global::System.String name, global::System.Int32 id)
         {
             Task task = new Task();
             task.LicenseKey = licenseKey;
             task.Action = action;
             task.Status = status;
             task.Name = name;
-            task.ScheduleType = scheduleType;
             task.Id = id;
             return task;
         }
@@ -332,30 +716,6 @@ namespace Demandforce.DFLinkServer.DAL.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ScheduleType
-        {
-            get
-            {
-                return _ScheduleType;
-            }
-            set
-            {
-                OnScheduleTypeChanging(value);
-                ReportPropertyChanging("ScheduleType");
-                _ScheduleType = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ScheduleType");
-                OnScheduleTypeChanged();
-            }
-        }
-        private global::System.Int32 _ScheduleType;
-        partial void OnScheduleTypeChanging(global::System.Int32 value);
-        partial void OnScheduleTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 Id
@@ -379,6 +739,30 @@ namespace Demandforce.DFLinkServer.DAL.Data
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ReturnedMessage
+        {
+            get
+            {
+                return _ReturnedMessage;
+            }
+            set
+            {
+                OnReturnedMessageChanging(value);
+                ReportPropertyChanging("ReturnedMessage");
+                _ReturnedMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ReturnedMessage");
+                OnReturnedMessageChanged();
+            }
+        }
+        private global::System.String _ReturnedMessage;
+        partial void OnReturnedMessageChanging(global::System.String value);
+        partial void OnReturnedMessageChanged();
 
         #endregion
     
