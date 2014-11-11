@@ -70,8 +70,9 @@ namespace DFPushServer
             ClientPool.OnlineEvent = this.Online;
             ClientPool.OfflineEvent = this.Offline;
 
-            var tcp = new TcpServer(9001);
+            var tcp = new TcpServer(Convert.ToInt32(this.textBox2.Text));
             this.button1.Enabled = false;
+            this.checkBox1.Enabled = false;
             tcp.Start();
             if (this.checkBox1.Checked)
             {
@@ -145,6 +146,5 @@ namespace DFPushServer
         }
 
         #endregion
-
     }
 }
