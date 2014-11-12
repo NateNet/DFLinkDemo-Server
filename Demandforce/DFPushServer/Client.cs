@@ -128,7 +128,6 @@ namespace DFPushServer
         /// </summary>
         public void Close()
         {
-            this.closed = true;
             if (this.tcp != null)
             {
                 this.tcp.Close();
@@ -205,13 +204,22 @@ namespace DFPushServer
         {
             try
             {
-                // if (!this.closed)
                 if (this.tcp.Connected)
                 {
-                    this.tcp.GetStream().EndRead(ar);
-                    this.LastTime = DateTime.Now;
-                    this.tcp.GetStream()
-                        .BeginRead(this.LastBytes, 0, this.LastBytes.Length, this.ReadCallBack, this.tcp);
+                    if (this.tcp.GetStream().EndRead(ar) > 0)
+                    {
+                        this.LastTime = DateTime.Now;
+                        this.tcp.GetStream()
+                            .BeginRead(this.LastBytes, 0, this.LastBytes.Length, this.ReadCallBack, this.tcp);
+                    }
+                    else
+                    {
+                        throw new Exception("0 byte received, client is closed");
+                    }
+                }
+                else
+                {
+                    throw new Exception("client is closed");
                 }
             }
             catch (Exception ex)
@@ -236,7 +244,8 @@ namespace DFPushServer
         {
             try
             {
-                str = this.LicenseKey + " - " + str;
+                // str = this.LicenseKey + " - " + str;
+
                 var bytes = this.ToBytes(str);
                 var stream = this.tcp.GetStream();
                 stream.Write(bytes, 0, bytes.Length);

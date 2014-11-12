@@ -18,14 +18,14 @@ namespace DFPushServer
     /// <summary>
     ///     The form 1.
     /// </summary>
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         #region Constructors and Destructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Form1" /> class.
+        ///     Initializes a new instance of the <see cref="frmMain" /> class.
         /// </summary>
-        public Form1()
+        public frmMain()
         {
             this.InitializeComponent();
         }
@@ -42,7 +42,7 @@ namespace DFPushServer
         /// </param>
         private void Offline(string licenseKey)
         {
-            this.Invoke(new EventHandler(delegate { this.listBox1.Items.Remove(licenseKey); }));
+            this.Invoke(new EventHandler(delegate { this.lbClientList.Items.Remove(licenseKey); }));
         }
 
         /// <summary>
@@ -53,11 +53,11 @@ namespace DFPushServer
         /// </param>
         private void Online(string licenseKey)
         {
-            this.Invoke(new EventHandler(delegate { this.listBox1.Items.Add(licenseKey); }));
+            this.Invoke(new EventHandler(delegate { this.lbClientList.Items.Add(licenseKey); }));
         }
 
         /// <summary>
-        /// The button 1_ click.
+        /// Click to start the tcp server.
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -65,16 +65,16 @@ namespace DFPushServer
         /// <param name="e">
         /// The e.
         /// </param>
-        private void button1_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
             ClientPool.OnlineEvent = this.Online;
             ClientPool.OfflineEvent = this.Offline;
 
             var tcp = new TcpServer(Convert.ToInt32(this.textBox2.Text));
-            this.button1.Enabled = false;
-            this.checkBox1.Enabled = false;
+            this.btnStart.Enabled = false;
+            this.ckbRefreshByBeat.Enabled = false;
             tcp.Start();
-            if (this.checkBox1.Checked)
+            if (this.ckbRefreshByBeat.Checked)
             {
                 this.timer1.Interval = 5000;
                 this.timer1.Enabled = true;
@@ -82,7 +82,7 @@ namespace DFPushServer
         }
 
         /// <summary>
-        /// The button 2_ click.
+        /// Click to send a message to client.
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -90,24 +90,24 @@ namespace DFPushServer
         /// <param name="e">
         /// The e.
         /// </param>
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSend_Click(object sender, EventArgs e)
         {
-            if (this.listBox1.SelectedIndex < 0)
+            if (this.lbClientList.SelectedIndex < 0)
             {
                 MessageBox.Show("Please choose a client");
                 return;
             }
 
-            string licenseKey = this.listBox1.SelectedItem.ToString();
+            string licenseKey = this.lbClientList.SelectedItem.ToString();
             if (licenseKey != string.Empty)
             {
                 var client = ClientPool.GetClient(licenseKey);
                 if (client != null)
                 {
-                    if (client.Send(this.textBox1.Text))
+                    if (client.Send(this.tbMessage.Text))
                     {
-                        this.listBox2.Items.Add("TO " + client.LicenseKey + ": " + this.textBox1.Text);
-                        this.textBox1.Clear();
+                        this.lbMessageList.Items.Add("TO " + client.LicenseKey + ": " + this.tbMessage.Text);
+                        this.tbMessage.Clear();
                     }
                 }
                 else
@@ -118,7 +118,7 @@ namespace DFPushServer
         }
 
         /// <summary>
-        /// The button 3_ click.
+        /// Click to refresh the client list.
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -126,7 +126,7 @@ namespace DFPushServer
         /// <param name="e">
         /// The e.
         /// </param>
-        private void button3_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             ClientPool.Refresh();
         }
@@ -146,6 +146,7 @@ namespace DFPushServer
         }
 
         #endregion
+
 
     }
 }
