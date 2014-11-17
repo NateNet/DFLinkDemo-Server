@@ -86,10 +86,15 @@ namespace DFPushServer
                 var licenseKey = Encoding.UTF8.GetString(bytes).TrimEnd('\0');
                 if (licenseKey != string.Empty)
                 {
-                    var c = new Client(client, licenseKey);
-                    if (c.LicenseKey != string.Empty)
+                    var existClient = ClientPool.GetClient(licenseKey);
+                    if (existClient == null)
                     {
+                        var c = new Client(client, licenseKey);
                         ClientPool.Add(c);
+                    }
+                    else
+                    {
+                        existClient.UpdateTcpClient(client);
                     }
                 }
                 else

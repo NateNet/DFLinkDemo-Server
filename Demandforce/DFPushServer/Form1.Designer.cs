@@ -40,8 +40,8 @@
             this.lbClientList = new System.Windows.Forms.ListBox();
             this.gbMessage = new System.Windows.Forms.GroupBox();
             this.lbMessageList = new System.Windows.Forms.ListBox();
-            this.tbMessage = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tbMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -93,9 +93,9 @@
             this.ckbRefreshByBeat.AutoSize = true;
             this.ckbRefreshByBeat.Location = new System.Drawing.Point(139, 16);
             this.ckbRefreshByBeat.Name = "ckbRefreshByBeat";
-            this.ckbRefreshByBeat.Size = new System.Drawing.Size(162, 17);
+            this.ckbRefreshByBeat.Size = new System.Drawing.Size(166, 17);
             this.ckbRefreshByBeat.TabIndex = 9;
-            this.ckbRefreshByBeat.Text = "refresh status by client\'s beat";
+            this.ckbRefreshByBeat.Text = "refresh status by client\'s pulse";
             this.ckbRefreshByBeat.UseVisualStyleBackColor = true;
             // 
             // btnStart
@@ -122,7 +122,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gbMessage);
             this.splitContainer1.Size = new System.Drawing.Size(867, 462);
-            this.splitContainer1.SplitterDistance = 253;
+            this.splitContainer1.SplitterDistance = 251;
             this.splitContainer1.TabIndex = 13;
             // 
             // gbClientList
@@ -131,7 +131,7 @@
             this.gbClientList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbClientList.Location = new System.Drawing.Point(0, 0);
             this.gbClientList.Name = "gbClientList";
-            this.gbClientList.Size = new System.Drawing.Size(253, 462);
+            this.gbClientList.Size = new System.Drawing.Size(251, 462);
             this.gbClientList.TabIndex = 18;
             this.gbClientList.TabStop = false;
             this.gbClientList.Text = "Client list";
@@ -142,7 +142,7 @@
             this.lbClientList.FormattingEnabled = true;
             this.lbClientList.Location = new System.Drawing.Point(3, 16);
             this.lbClientList.Name = "lbClientList";
-            this.lbClientList.Size = new System.Drawing.Size(247, 443);
+            this.lbClientList.Size = new System.Drawing.Size(245, 443);
             this.lbClientList.TabIndex = 12;
             // 
             // gbMessage
@@ -152,7 +152,7 @@
             this.gbMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbMessage.Location = new System.Drawing.Point(0, 0);
             this.gbMessage.Name = "gbMessage";
-            this.gbMessage.Size = new System.Drawing.Size(610, 462);
+            this.gbMessage.Size = new System.Drawing.Size(612, 462);
             this.gbMessage.TabIndex = 17;
             this.gbMessage.TabStop = false;
             this.gbMessage.Text = "Messages";
@@ -163,8 +163,18 @@
             this.lbMessageList.FormattingEnabled = true;
             this.lbMessageList.Location = new System.Drawing.Point(3, 16);
             this.lbMessageList.Name = "lbMessageList";
-            this.lbMessageList.Size = new System.Drawing.Size(604, 375);
+            this.lbMessageList.Size = new System.Drawing.Size(606, 375);
             this.lbMessageList.TabIndex = 18;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tbMessage);
+            this.panel2.Controls.Add(this.btnSend);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(3, 391);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(606, 68);
+            this.panel2.TabIndex = 17;
             // 
             // tbMessage
             // 
@@ -175,23 +185,13 @@
             this.tbMessage.Location = new System.Drawing.Point(0, 12);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(504, 46);
+            this.tbMessage.Size = new System.Drawing.Size(506, 46);
             this.tbMessage.TabIndex = 16;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.tbMessage);
-            this.panel2.Controls.Add(this.btnSend);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 391);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(604, 68);
-            this.panel2.TabIndex = 17;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSend.Location = new System.Drawing.Point(515, 21);
+            this.btnSend.Location = new System.Drawing.Point(517, 21);
             this.btnSend.Margin = new System.Windows.Forms.Padding(5);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(84, 29);

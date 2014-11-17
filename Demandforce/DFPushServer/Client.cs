@@ -36,7 +36,7 @@ namespace DFPushServer
         /// <summary>
         ///     The TCP client.
         /// </summary>
-        private readonly TcpClient tcp = new TcpClient();
+        private TcpClient tcp = new TcpClient();
 
         /// <summary>
         /// The closed.
@@ -63,6 +63,24 @@ namespace DFPushServer
             this.LastTime = DateTime.Now;
             this.LastBytes = new byte[this.tcp.ReceiveBufferSize];
 
+            this.tcp.GetStream().BeginRead(this.LastBytes, 0, this.LastBytes.Length, this.ReadCallBack, this.tcp);
+        }
+
+        /// <summary>
+        /// use the new tcpClient instead the old one.
+        /// </summary>
+        /// <param name="tcpClient">
+        /// the new tcp client.
+        /// </param>
+        public void UpdateTcpClient(TcpClient tcpClient)
+        {
+            if (this.tcp != null)
+            {
+                this.tcp.Close();
+            }
+            this.tcp = tcpClient;
+            this.LastTime = DateTime.Now;
+            this.LastBytes = new byte[this.tcp.ReceiveBufferSize];
             this.tcp.GetStream().BeginRead(this.LastBytes, 0, this.LastBytes.Length, this.ReadCallBack, this.tcp);
         }
 
@@ -204,26 +222,24 @@ namespace DFPushServer
         {
             try
             {
-                if (this.tcp.Connected)
+                var tcpClient = (TcpClient)ar.AsyncState;
+                if (tcpClient.Connected) // if connected=false, the client is closed by server side.
                 {
-                    if (this.tcp.GetStream().EndRead(ar) > 0)
+                    if (tcpClient.GetStream().EndRead(ar) > 0)
                     {
                         this.LastTime = DateTime.Now;
-                        this.tcp.GetStream()
-                            .BeginRead(this.LastBytes, 0, this.LastBytes.Length, this.ReadCallBack, this.tcp);
+                        tcpClient.GetStream()
+                            .BeginRead(this.LastBytes, 0, this.LastBytes.Length, this.ReadCallBack, tcpClient);
                     }
                     else
                     {
                         throw new Exception("0 byte received, client is closed");
                     }
                 }
-                else
-                {
-                    throw new Exception("client is closed");
-                }
             }
             catch (Exception ex)
             {
+                // how to know not in CloseEvent
                 if (this.CloseEvent != null)
                 {
                     this.CloseEvent(this.LicenseKey);

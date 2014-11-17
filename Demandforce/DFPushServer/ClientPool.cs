@@ -84,12 +84,14 @@ namespace DFPushServer
         public static Client GetClient(string licenseKey)
         {
             var client = (Client)ClientList[licenseKey];
-            if (client.IsAlive())
+            if (client != null)
             {
-                return client;
+                if (client.IsAlive())
+                {
+                    return client;
+                }
+                Remove(client.LicenseKey);
             }
-
-            Remove(client.LicenseKey);
             return null;
         }
 
